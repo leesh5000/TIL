@@ -8,4 +8,3 @@
 ## [RDB]()
 ## [TDD]()
 ## [DDD]()
-## [Algorithm](./Algorithm/README.md)
