@@ -3,6 +3,9 @@
 
 [강의 소스코드](https://github.com/leesh5000/Spring-Practice/tree/master/%EC%8A%A4%ED%94%84%EB%A7%81%20%ED%95%B5%EC%8B%AC%20%EC%9B%90%EB%A6%AC%20%EA%B3%A0%EA%B8%89%ED%8E%B8/advanced)는 유료 강의이기 때문에 Private 저장소에 저장합니다.
 
-## 예제 만들기
+## 1. 예제 만들기
 
 - 요구사항은 모두 만족했지만, TraceId를 매소드의 파라미터로 넘기는 것은 변경 사항에 유연하게 대응할 수 없다. -> 다른 대안이 필요
+
+
+## 2. ThreadLocal
