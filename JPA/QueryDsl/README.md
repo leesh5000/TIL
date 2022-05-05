@@ -17,4 +17,9 @@
 - Test 코드에 @Transactional이 있으면, 기본적으로 모두 롤백을 해버림 -> @Commit 어노테이션을 달아두면 됨
 - `logging.level.org.hibernate.type: trace`로 하면 (?)를 볼 수 있음
 
-## 
+## 예제 도메인 모델
+
+### 에제 도메인 모델과 동작확인
+- em.flush() : 실제 쿼리를 만들어 DB에 보냄 / em.clear() : 영속성 컨텍스트 초기화
+- changeTeam에서 멤버가 중복되는 문제 : 추가 후 제거해줘야 하지만, 이렇게 까지 하는 경우 너무 번거롭다. 일반적으로, changeTeam() 이후에 영속성 컨텍스트를 clear하여 다시 team을 조회하여 중복문제를 해결한다. (team이 연관관계의 주인이 아니기 때문에 가능)
+- Test 코드에 @Transactional이 있으면, 테스트가 끝나는 시점에 롤백시킨다.
