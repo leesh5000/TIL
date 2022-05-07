@@ -34,3 +34,32 @@
 - static 변수 vs new Q.. 로 생성 -> static 변수를 활용하는 것을 권장 (같은 테이블을 조인 하는 경우에만 new로 선언해서 사용)
 - querydsl은 jpql의 빌더 역할을 하는데, 결과적으로 querydsl로 작성한 코드는 jpql이 된다.
 - 실행되는 jpql을 보고 싶으면, `spring.jpa.properties.hibernate.use_sql_comments: true` 옵션을 넣으면 된다.
+
+### 4.3. 검색 조건 쿼리
+- 많은 검색조건들을 제공 (체이닝)
+- and의 경우, 파라미터를 여러 개 넘기면 and가 됨
+```java
+member.username.eq("member1") // username = 'member1'
+member.username.ne("member1") //username != 'member1'
+member.username.eq("member1").not() // username != 'member1'
+member.username.isNotNull() //이름이 is not null
+member.age.in(10, 20) // age in (10,20)
+member.age.notIn(10, 20) // age not in (10, 20)
+member.age.between(10,30) //between 10, 30
+member.age.goe(30) // age >= 30
+member.age.gt(30) // age > 30
+member.age.loe(30) // age <= 30
+member.age.lt(30) // age < 30
+member.username.like("member%") //like 검색 
+member.username.contains("member") // like ‘%member%’ 검색 
+member.username.startsWith("member") //like ‘member%’ 검색
+```
+
+### 4.4. 결과 조회
+- fetch() : 리스트 조회, 데이터 없으면 빈 리스트 반환 
+- fetchOne() : 단 건 조회
+  - 결과가 없으면 : null
+  - 결과가 둘 이상이면 : com.querydsl.core.NonUniqueResultException 
+- fetchFirst() : limit(1).fetchOne()
+- fetchResults() : 페이징 정보 포함, total count 쿼리 추가 실행 -> totalCount를 가져와야하기 때문에 쿼리가 2번 나간다.
+- fetchCount() : count 쿼리로 변경해서 count 수 조회
