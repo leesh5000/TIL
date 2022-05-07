@@ -17,9 +17,20 @@
 - Test 코드에 @Transactional이 있으면, 기본적으로 모두 롤백을 해버림 -> @Commit 어노테이션을 달아두면 됨
 - `logging.level.org.hibernate.type: trace`로 하면 (?)를 볼 수 있음
 
-## 예제 도메인 모델
+## 3. 예제 도메인 모델
 
-### 에제 도메인 모델과 동작확인
+### 3.1. 에제 도메인 모델과 동작확인
 - em.flush() : 실제 쿼리를 만들어 DB에 보냄 / em.clear() : 영속성 컨텍스트 초기화
 - changeTeam에서 멤버가 중복되는 문제 : 추가 후 제거해줘야 하지만, 이렇게 까지 하는 경우 너무 번거롭다. 일반적으로, changeTeam() 이후에 영속성 컨텍스트를 clear하여 다시 team을 조회하여 중복문제를 해결한다. (team이 연관관계의 주인이 아니기 때문에 가능)
 - Test 코드에 @Transactional이 있으면, 테스트가 끝나는 시점에 롤백시킨다.
+
+## 4. 기본 문법
+
+### 4.1. 시작 - JPQL vs Querydsl
+- JPQL은 런타임 시점에 오류 확인 가능, Querydsl은 컴파일 시점에 오류 확인 가능
+- JPAQueryFactory는 필드 레벨에서 사용하는 것을 권장 (동시성 문제를 고민할 필요가 없도록 설계되어 있음)
+
+### 4.2. 기본 Q-Type 활용
+- static 변수 vs new Q.. 로 생성 -> static 변수를 활용하는 것을 권장 (같은 테이블을 조인 하는 경우에만 new로 선언해서 사용)
+- querydsl은 jpql의 빌더 역할을 하는데, 결과적으로 querydsl로 작성한 코드는 jpql이 된다.
+- 실행되는 jpql을 보고 싶으면, `spring.jpa.properties.hibernate.use_sql_comments: true` 옵션을 넣으면 된다.
