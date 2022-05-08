@@ -65,4 +65,13 @@ member.username.startsWith("member") //like ‘member%’ 검색
 - fetchCount() : count 쿼리로 변경해서 count 수 조회
 
 ### 4.5. 정렬
+- `desc(), asc(), nullsLast(), nullsFirst()`
+
+### 4.6. 페이징
+- `offset(), limit()`으로 페이징 지원
+- 주의! offset은 0부터 시작
+- fetchResults는 복잡한 페이징 쿼리의 경우에는 count, contents 쿼리 모두 복잡한 쿼리로 가져오기 때문에 성능을 위해서는 count, contents 쿼리 따로 작성하는 것이 좋다.
+
+### 4.7. 집합
+- `count(), sum(), avg(), max(), min(), ...`은 데이터를 조회할 때, 튜플로 조회를 한다. (querydsl이 제공하는 튜플)
 - 
