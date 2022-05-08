@@ -77,5 +77,17 @@ member.username.startsWith("member") //like ‘member%’ 검색
 - groupBy(), having()도 가능
 
 ### 4.8. 조인 - 기본조인
-- 세타조인(연관관계가 없이 하는 조인, from절에 두 개 나열)
-- 세타조인은 
+- 세타조인(연관관계가 없이 하는 조인, from절에 두 개 나열, Cartesian 곱)
+- 세타조인을 하면, 외부 조인(outer join) 불가능 -> 최신 하이버네이트에서는 join on 절을 사용하면 외부 조인 가능
+- join = inner join
+
+### 4.9. 조인 - on절
+- on절을 활용한 조인(JPA 2.1부터 지원)
+1. 조인 대상 필터링
+2. 연관관계 없는 엔티티의 외부 조인
+
+#### 조인 대상 필터링
+- (inner)join on == join where (left join인 경우에는 다름)
+
+#### 연관관계 없는 엔티티 외부 조인
+- 
