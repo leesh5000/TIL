@@ -90,4 +90,8 @@ member.username.startsWith("member") //like ‘member%’ 검색
 - (inner)join on == join where (left join인 경우에는 다름)
 
 #### 연관관계 없는 엔티티 외부 조인
-- 
+- 이건 좀 많이 쓴다.
+- on절은 필터링 하는 것이다. 즉, 데이터를 조인하는 대상을 줄이는 것
+- 주의
+  - 일반조인 : `leftJoin(member.team, team)`
+  - on조인 : `from(member).leftJoin(team).on(xxx)`
