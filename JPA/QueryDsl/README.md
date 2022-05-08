@@ -74,4 +74,8 @@ member.username.startsWith("member") //like ‘member%’ 검색
 
 ### 4.7. 집합
 - `count(), sum(), avg(), max(), min(), ...`은 데이터를 조회할 때, 튜플로 조회를 한다. (querydsl이 제공하는 튜플)
-- 
+- groupBy(), having()도 가능
+
+### 4.8. 조인 - 기본조인
+- 세타조인(연관관계가 없이 하는 조인, from절에 두 개 나열)
+- 세타조인은 
