@@ -129,3 +129,31 @@ member.username.startsWith("member") //like ‘member%’ 검색
 - select, 조건절(where)에서 사용 가능
 - 가급적 DB에서 case를 사용하는 경우는 없도록 한다.
 - DB에서는 그냥 DB 안에 있는 데이터를 최소한의 필터링, 그룹화하여 데이터를 줄이는 역할만 하고, CASE 같은 경우는 꼭 필요한 경우가 아닌 경우에는 애플리케이션에서 처리한다.
+
+### 4.12. 상수, 문자 더하기
+
+- Expressions.constant
+- concat, stringValue
+
+## 5. 중급 문법
+
+### 5.1. 프로젝션과 결과 반환 - 기본
+
+- 프로젝션 : select 대상 지정
+- 프로젝션 대상이 하나면 타입을 명확하게 지정할 수 있음
+- 프로젝션 대상이 둘 이상이면 튜플이나 DTO로 조회
+- tuple.get()으로 조회
+- tuple은 com.querydsl 패키지 안에 존재하기 때문에 이것을 repository 계층에서 사용하는 것은 괜찮지만, service 계층이나 controller 계층에서 사용하는 것은 좋은 설계가 아니다.
+  - 나중에, 하부 기술을 querydsl에서 다른 것으로 바꾸더라도 다른 계층에서는 영향도가 없다.
+  - 즉, 튜플은 repository 계층 안에서만 사용하고, 바깥으로 나갈때는 dto로 변환해서 내보내자.
+
+### 5.2. 프로젝션과 결과 반환 - DTO 조회
+
+- 순수 JPA에서 DTO로 조회
+  - 엔티티로 조회하면, 필요없는 데이터까지 모두 조회해야함
+  - 필요한 데이터만 뽑기위해 DTO 활용
+  - JPA에선 new -DTO를 제공 (생성자 방식만 지원함) 
+- Querydsl은 세 가지 방법으로 DTO를 활용하도록 제공
+  - 프로퍼티 접근(setter) : Projections.bean
+  - 필드 직접 접근 : Projections.fields (getter/setter 없어도 됨) (private이어도 리플렉션 같은 기술을 활용하여 할 수 있음) - 단, 필드 명이 맞아야 함 -> as()로 해결
+  - 생성자 사용 : Projections.constructor
