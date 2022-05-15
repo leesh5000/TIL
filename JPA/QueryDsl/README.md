@@ -156,4 +156,24 @@ member.username.startsWith("member") //like ‘member%’ 검색
 - Querydsl은 세 가지 방법으로 DTO를 활용하도록 제공
   - 프로퍼티 접근(setter) : Projections.bean
   - 필드 직접 접근 : Projections.fields (getter/setter 없어도 됨) (private이어도 리플렉션 같은 기술을 활용하여 할 수 있음) - 단, 필드 명이 맞아야 함 -> as()로 해결
-  - 생성자 사용 : Projections.constructor
+  - 생성자 사용 : Projections.constructor, @QueryProjection
+
+### 5.3. 프로젝션과 결과 반환 - @QueryProjection
+
+- 가장 깔끔한 해결 방법이지만, 약간의 단점이 존재
+- constructor 방법은 runtime 오류가 나기 때문에 안 좋다. (컴파일 시에 오류 못 잡음)
+- @QueryProjection 다 좋지만, 몇 가지 단점이 존재한다.
+  1. Q파일을 생성해야함
+  2. Dto가 querydsl 기술에 의존성을 갖게 됨
+
+### 5.4. 동적 쿼리 - BooleanBuilder 사용
+
+- 동적 쿼리를 해결하는 두 가지 방식
+  1. BooleanBuilder
+  2. Where 다중 파라미터 사용
+- BooleanBuilder
+- Where 다중 파라미터 방법의 장점
+  - BooleanBuilder 보다 더 깔끔해짐
+  - where문에 null이 들어가면 무시가 된다.
+  - 자바 코드를 사용하기 때문에 조립 가능 -> 조립하여 재사용 가능
+  - 쿼리의 가독성이 높아진다.
