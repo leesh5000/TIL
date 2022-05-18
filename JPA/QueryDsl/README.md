@@ -196,3 +196,22 @@ member.username.startsWith("member") //like ‘member%’ 검색
 
 - SQL function은 JPA와 같이 Dialect에 등록된 내용만 호출할 수 있다.
 - Dialect 안에 SQL function이 등록되어 있어야한다.
+
+## 6. 실무 활용 - 순수 JPA와 Querydsl
+
+### 6.1. 순수 JPA 리포지토리와 Querydsl
+
+- JPA와 Querydsl로 리포지토리를 실무에서 실제 어떻게 만드는지 살펴보자.
+- 여기서는 일단, Repository = Dao 라고 생각하자. (깊게 들어가면 다르지만)
+- `assertThat(findMember).isEqualTo(member);` 같은 영속성 컨텍스트 안에서니까 객체 주소가 같다.
+- JPAQueryFactory를 Bean으로 등록해서 사용해도 좋다.
+- entityManager는 싱글톤으로 사용해도 문제가 없을까?
+  - 문제가 없다. 왜냐하면, EntityManager가 Spring과 함께 쓰면, 동시성 문제와 상관없이 트랜잭션 단위로 동작한다. 그니까, 스프링에서는 EntityManage에다가 진짜 EntityManager를 주입하는 것이 아니고, 프록시인 가짜를 주입해주고, 이것이 트랜잭션 단위로 라우팅 된다.
+
+### 6.2. 동적 쿼리와 성능 최적화 조회 - Builder 사용
+
+- 멤버 정보와 팀 정보를 섞어서 딱 원하는 정보만 가져오고 싶다.
+- @QueryProjection의 단점은 Dto가 특정 기술에 의존한다는 것
+- ConditionDto는 null 올 수도 있으니 Wrapper 클래스를 사용
+- 중요! 조건이 다 빠졌을 때는 모든 데이터를 다 가져온다.
+- 다음 시간에는 Where 다중 파라미터를 사용하여 더 깔끔하게 처리해보자
