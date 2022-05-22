@@ -57,3 +57,22 @@ FROM 테이블
 WHERE 조건
 ORDER BY 컬럼 [ASC/DESC]
 ```
+
+### 3.7. select문 실습
+
+### 3.8. 필요한 데이터만을 추출하기 위한, 연산자 학습
+
+- 부등호 : `<> == !=`
+- 범위 : `BETWEEN ... AND ...`
+- 포함 : `컬럼 IN ([값], [값], ...) == WHERE 컬럼 = '값' OR 컬럼 = '값' ...`
+- 문자열 패턴 : `컬럼 LIKE '%명%'`
+- NULL 구분 : `IS NULL, IS NOT NULL`
+
+### 3.9. 한번씩 필요로 하는 디테일, 형 변환의 개념
+
+- 문자를 숫자로 : `SELECT CAST('1' as unsigned);
+- 숫자를 문자로 : `SELECT CAST (1 as char(1))`
+- 날짜 포맷 변경 (-> 문자로)
+  - `SELECT DATE_FORMAT(NOW(), '%m/%d/%Y')`
+  - `SELECT DATE_FORMAT(NOW(), '%Y-%m-%d)`
+  - `SELECT DATE_FORMAT('20220303', '%Y-%m-%d)`
