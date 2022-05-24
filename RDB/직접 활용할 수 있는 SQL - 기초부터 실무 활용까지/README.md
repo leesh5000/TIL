@@ -76,3 +76,7 @@ ORDER BY 컬럼 [ASC/DESC]
   - `SELECT DATE_FORMAT(NOW(), '%m/%d/%Y')`
   - `SELECT DATE_FORMAT(NOW(), '%Y-%m-%d)`
   - `SELECT DATE_FORMAT('20220303', '%Y-%m-%d)`
+
+### 3.10. sql 기본개념 실습 문제 (1)
+
+### 3.11. sql 기본개념 실습 문제 (2)
