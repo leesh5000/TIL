@@ -74,9 +74,16 @@ ORDER BY 컬럼 [ASC/DESC]
 - 숫자를 문자로 : `SELECT CAST (1 as char(1))`
 - 날짜 포맷 변경 (-> 문자로)
   - `SELECT DATE_FORMAT(NOW(), '%m/%d/%Y')`
-  - `SELECT DATE_FORMAT(NOW(), '%Y-%m-%d)`
+  - `SELECT DATE_FORMAT(NOW(), '%Y-%m-%d)` + `SELECT DATE_FORMAT(NOW(), '%m')` 처럼 특정 월만 추출하는 것도 가능  
   - `SELECT DATE_FORMAT('20220303', '%Y-%m-%d)`
 
 ### 3.10. sql 기본개념 실습 문제 (1)
+
+- 정석은 날짜 타입과 문자 타입의 데이터 형을 맞춰줘야 하지만, DB에서 자동 형변환을 해준다. 
+  - DB의 자동 형변환 : `where e.hire_date between '2016-01-01' and '2016-03-31';`
+  - 정석 : `where date_format(e.hire_date, '%Y-%m-%d') between '2016-01-01' and '2016-03-31';`
+- `select * from employees e where date_format(e.hire_date, '%m') = '03';`
+- `select * from employees e where hire_date like '%-03-%';` 도 가능
+
 
 ### 3.11. sql 기본개념 실습 문제 (2)
