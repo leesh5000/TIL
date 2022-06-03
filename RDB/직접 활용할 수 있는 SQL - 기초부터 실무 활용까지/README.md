@@ -87,3 +87,10 @@ ORDER BY 컬럼 [ASC/DESC]
 
 
 ### 3.11. sql 기본개념 실습 문제 (2)
+
+## 4. 집계함수 및 GROUP BY
+
+### 4.1. 기본 집계함수 설명(SUM, MAX, MIN, AVG)
+
+- 집계함수 및 GROUP BY
+- 문자를 max 하면 알파뱃 순서로 가져옴
