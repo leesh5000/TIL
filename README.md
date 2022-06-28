@@ -5,4 +5,4 @@
 ## [Spring Framework](./Spring/README.md)
 ## [JPA](./JPA/README.md)
 ## [RDB](./RDB/README.md)
-## [이펙티브 자바](./이펙티브-자바/README.md)
+## [Effective Java](./EffectiveJava/README.md)
