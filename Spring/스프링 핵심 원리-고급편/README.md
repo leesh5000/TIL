@@ -376,3 +376,9 @@ void strategyV4() {
 - 스프링은 `JDK 동적 프록시(InvocationHandler)`와 `CGLIB(MethodInterceptor)`를 해결하기 위해 추상화된 Advice 개념을 적용
   - 프록시 팩토리를 사용하면, `JDK 동적 프록시(InvocationHandler)`와 `CGLIB(MethodInterceptor)`를 몰라도 됨
 - 스프링은 `Pointcut`을 활용하여, 프록시 로직을 적용할지 말지를 일관성 있게 처리할 수 있다. 
+
+### 6.2. 프록시 팩토리 - 예제 코드 1
+
+- invocation 안에 모든 target 클래스 정보가 들어가 있다.
+- `new ProxyFactory(target)`
+- 
