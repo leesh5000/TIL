@@ -381,4 +381,16 @@ void strategyV4() {
 
 - invocation 안에 모든 target 클래스 정보가 들어가 있다.
 - `new ProxyFactory(target)`
-- 
+- 프록시 팩토리로 프록시 생성 시 Target 정보를 넘긴다.
+- 프록시 팩토리 사용 시 장점
+  - `AopUtils.isAopProxy(proxy)` 사용 가능
+  - 프록시 팩토리를 사용했을때만 가능
+
+### 6.3. 프록시 팩토리 - 예제 코드2
+
+- 프록시 팩토리의 기술 선택 방법
+  - 인터페이스가 있으면, JDK 동적 프록시 (인터페이스 기반 프록시)
+  - 인터페이스가 없으면, CGLIB (구체클래스 기반 프록시)
+  - `proxyTargetClass=true`: CGLIB, 구체 클래스 기반 프록시, 인터페이스 여부 상관 없음
+- 프록시 팩토리의 추상화로 CGLIB, JDK 동적 프록시에 의존성 x
+- 스프링 부트는 AOP를 적용할 때, `proxyTargetClass=true`로 설정해서 사용 -> 기본적으로 CGLIB
